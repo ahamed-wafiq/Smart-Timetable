@@ -1,0 +1,21 @@
+.timetables-page {
+  animation: fadeIn 0.3s ease-in;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: var(--dark-text-secondary);
+  font-size: 1.125rem;
+}
+
+.timetables-list {
+  margin-top: 2rem;
+}
+
+.section-title {
+  font-size: 1.25rem;
+  color: var(--dark-text-primary);
+  margin: 0 0 1.5rem 0;
+  font-weight: 600;
+}

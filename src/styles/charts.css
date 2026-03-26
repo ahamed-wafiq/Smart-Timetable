@@ -1,0 +1,81 @@
+.chart-container {
+  width: 100%;
+  height: 100%;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--dark-bg-tertiary);
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(163, 230, 53, 0.2);
+}
+
+.chart-empty {
+  text-align: center;
+  color: var(--dark-text-secondary);
+  font-size: 1rem;
+  padding: 2rem;
+}
+
+.recharts-wrapper {
+  width: 100% !important;
+}
+
+.recharts-text {
+  fill: var(--dark-text-primary) !important;
+}
+
+.recharts-tooltip-wrapper {
+  outline: none !important;
+}
+
+/* Tooltip styling */
+.recharts-default-tooltip {
+  background-color: var(--dark-bg-tertiary) !important;
+  border: 1px solid rgba(163, 230, 53, 0.3) !important;
+  border-radius: var(--radius-md) !important;
+  box-shadow: var(--shadow-md) !important;
+  padding: 0.75rem !important;
+}
+
+.recharts-tooltip label {
+  color: var(--dark-text-primary) !important;
+  font-weight: 600 !important;
+}
+
+.recharts-tooltip-item {
+  color: var(--dark-text-secondary) !important;
+}
+
+/* Bar chart styles */
+.recharts-bar-rectangle {
+  transition: var(--transition) !important;
+}
+
+.recharts-bar-rectangle:hover {
+  filter: brightness(1.1) !important;
+}
+
+/* Line chart styles */
+.recharts-line {
+  stroke-linecap: round !important;
+  stroke-linejoin: round !important;
+}
+
+.recharts-line-dot {
+  transition: var(--transition) !important;
+}
+
+/* Axis and grid */
+.recharts-cartesian-axis-line {
+  stroke: rgba(163, 230, 53, 0.3) !important;
+}
+
+.recharts-cartesian-axis-tick-value {
+  fill: var(--dark-text-secondary) !important;
+}
+
+.recharts-grid-lines line {
+  stroke: rgba(163, 230, 53, 0.1) !important;
+  stroke-dasharray: 3, 3 !important;
+}

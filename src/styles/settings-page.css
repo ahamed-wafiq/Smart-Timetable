@@ -1,0 +1,251 @@
+.settings-page {
+  animation: fadeIn 0.3s ease-in;
+}
+
+.notification {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  margin-bottom: 2rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(163, 230, 53, 0.3);
+  font-weight: 600;
+}
+
+.notification.success {
+  background-color: rgba(163, 230, 53, 0.1);
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+}
+
+.notification svg {
+  min-width: 20px;
+}
+
+.settings-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.settings-section {
+  padding: 2rem;
+  background-color: var(--dark-bg-tertiary);
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(163, 230, 53, 0.2);
+}
+
+.settings-section h3 {
+  margin: 0 0 1.5rem 0;
+  font-size: 1.25rem;
+  color: var(--dark-text-primary);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.setting-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+  border-bottom: 1px solid rgba(163, 230, 53, 0.2);
+}
+
+.setting-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.setting-item.button-setting {
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.setting-info h4 {
+  margin: 0 0 0.25rem 0;
+  font-size: 1rem;
+  color: var(--dark-text-primary);
+}
+
+.setting-info p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--dark-text-secondary);
+}
+
+.toggle-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  color: var(--text-secondary);
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+}
+
+.toggle-btn:hover {
+  color: var(--primary-color);
+  transform: scale(1.1);
+}
+
+.toggle-on {
+  color: var(--success-color);
+}
+
+.toggle-off {
+  color: var(--text-light);
+}
+
+.btn-danger {
+  background-color: var(--error-color);
+  color: var(--text-white);
+}
+
+.btn-danger:hover {
+  background-color: #dc2626;
+  transform: translateY(-2px);
+}
+
+.info-section {
+  grid-column: span 1;
+}
+
+.about-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.about-content p {
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.about-content strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.features-list h4 {
+  margin: 0 0 0.75rem 0;
+  font-size: 1rem;
+  color: var(--text-primary);
+}
+
+.features-list ul {
+  margin: 0;
+  padding-left: 1.5rem;
+  list-style: none;
+}
+
+.features-list li {
+  padding: 0.5rem 0;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+.tech-stack {
+  grid-column: span 1;
+}
+
+.tech-items {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.tech-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem;
+  background-color: var(--bg-secondary);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+}
+
+.tech-label {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.tech-value {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+.shortcuts-section {
+  padding: 2rem;
+}
+
+.shortcuts-section h3 {
+  margin: 0 0 1.5rem 0;
+  font-size: 1.25rem;
+  color: var(--text-primary);
+}
+
+.shortcuts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.shortcut-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1rem;
+  background-color: var(--bg-secondary);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+}
+
+.shortcut-item kbd {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  font-family: monospace;
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--text-primary);
+}
+
+.shortcut-item span {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+}
+
+@media (max-width: 768px) {
+  .settings-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .tech-items {
+    grid-template-columns: 1fr;
+  }
+
+  .shortcuts-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .setting-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .notification {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+}
