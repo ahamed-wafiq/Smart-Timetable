@@ -1,7 +1,7 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import { FiArrowRight, FiClock, FiTarget, FiTrendingUp } from 'react-icons/fi';
-import '../styles/home-page.css';
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import { FiArrowRight, FiClock, FiTarget, FiTrendingUp } from "react-icons/fi";
+import "../styles/home-page.css";
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -9,37 +9,40 @@ const HomePage = () => {
   const features = [
     {
       icon: FiTarget,
-      title: 'Smart Generation',
-      description: 'AI-powered timetable generation that optimizes schedules intelligently',
-      color: '#6366f1'
+      title: "Smart Generation",
+      description:
+        "AI-powered timetable generation that optimizes schedules intelligently",
+      color: "#6366f1",
     },
     {
       icon: FiClock,
-      title: 'Time Management',
-      description: 'Efficiently manage time slots and avoid conflicts automatically',
-      color: '#ec4899'
+      title: "Time Management",
+      description:
+        "Efficiently manage time slots and avoid conflicts automatically",
+      color: "#ec4899",
     },
     {
       icon: FiTrendingUp,
-      title: 'Analytics & Insights',
-      description: 'Detailed stress analysis and optimization metrics for better planning',
-      color: '#f59e0b'
-    }
+      title: "Analytics & Insights",
+      description:
+        "Detailed stress analysis and optimization metrics for better planning",
+      color: "#f59e0b",
+    },
   ];
 
   const benefits = [
     {
-      number: '500+',
-      label: 'Institutions Using'
+      number: "500+",
+      label: "Institutions Using",
     },
     {
-      number: '50K+',
-      label: 'Schedules Generated'
+      number: "50K+",
+      label: "Schedules Generated",
     },
     {
-      number: '99%',
-      label: 'Conflict-Free Rate'
-    }
+      number: "99%",
+      label: "Conflict-Free Rate",
+    },
   ];
 
   return (
@@ -48,23 +51,23 @@ const HomePage = () => {
       <section className="hero-section">
         <div className="hero-content">
           <h1 className="hero-title">Smart Timetable Generation Made Simple</h1>
-
+          st
           <p className="hero-subtitle">
-            Create conflict-free timetables in minutes. Our AI-powered platform optimizes schedules 
-            with intelligent constraint management and stress analysis.
+            Create conflict-free timetables in minutes. Our AI-powered platform
+            optimizes schedules with intelligent constraint management and
+            stress analysis.
           </p>
-
           <div className="hero-buttons">
-            <button 
+            <button
               className="btn btn-primary"
-              onClick={() => navigate('/generator')}
+              onClick={() => navigate("/generator")}
             >
               Get Started Now
               <FiArrowRight size={18} />
             </button>
-            <button 
+            <button
               className="btn btn-secondary"
-              onClick={() => navigate('/generator')}
+              onClick={() => navigate("/generator")}
             >
               View Features
             </button>
@@ -95,7 +98,10 @@ const HomePage = () => {
             const Icon = feature.icon;
             return (
               <div key={index} className="feature-card">
-                <div className="feature-icon-wrapper" style={{ borderColor: feature.color }}>
+                <div
+                  className="feature-icon-wrapper"
+                  style={{ borderColor: feature.color }}
+                >
                   <Icon size={32} color={feature.color} />
                 </div>
                 <h3>{feature.title}</h3>
@@ -109,10 +115,13 @@ const HomePage = () => {
       {/* CTA Section */}
       <section className="cta-section">
         <h2>Ready to Transform Your Scheduling?</h2>
-        <p>Start creating optimized timetables today with our intelligent platform</p>
-        <button 
+        <p>
+          Start creating optimized timetables today with our intelligent
+          platform
+        </p>
+        <button
           className="btn btn-primary btn-large"
-          onClick={() => navigate('/generator')}
+          onClick={() => navigate("/generator")}
         >
           Generate Your First Timetable
           <FiArrowRight size={20} />
@@ -128,28 +137,39 @@ const HomePage = () => {
               <span className="check-icon">✓</span>
               <div>
                 <h4>Intelligent Optimization</h4>
-                <p>AI analyzes constraints and generates optimal schedules automatically</p>
+                <p>
+                  AI analyzes constraints and generates optimal schedules
+                  automatically
+                </p>
               </div>
             </li>
             <li>
               <span className="check-icon">✓</span>
               <div>
                 <h4>Real-time Analytics</h4>
-                <p>Track stress distribution and optimization metrics in real-time</p>
+                <p>
+                  Track stress distribution and optimization metrics in
+                  real-time
+                </p>
               </div>
             </li>
             <li>
               <span className="check-icon">✓</span>
               <div>
                 <h4>Easy Management</h4>
-                <p>Intuitive interface for managing constraints and preferences</p>
+                <p>
+                  Intuitive interface for managing constraints and preferences
+                </p>
               </div>
             </li>
             <li>
               <span className="check-icon">✓</span>
               <div>
                 <h4>Export & Share</h4>
-                <p>Export timetables in multiple formats and share with stakeholders</p>
+                <p>
+                  Export timetables in multiple formats and share with
+                  stakeholders
+                </p>
               </div>
             </li>
           </ul>
