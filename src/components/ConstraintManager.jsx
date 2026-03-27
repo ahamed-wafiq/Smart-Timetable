@@ -39,7 +39,7 @@ const ConstraintManager = () => {
     if (reserveRoom && reserveDay && reserveSlot) {
       dispatch(
         addReservedClassroom({
-          classroom: reserveRoom,
+          classroom: Number(reserveRoom),
           day: reserveDay,
           timeSlot: reserveSlot,
         })
@@ -52,7 +52,7 @@ const ConstraintManager = () => {
     if (unavailFaculty && unavailDay && unavailSlot) {
       dispatch(
         addFacultyUnavailability({
-          faculty: unavailFaculty,
+          faculty: Number(unavailFaculty),
           day: unavailDay,
           timeSlot: unavailSlot,
         })
@@ -65,9 +65,9 @@ const ConstraintManager = () => {
     if (fixedSubject && fixedFaculty && fixedRoom && fixedDay && fixedSlot) {
       dispatch(
         addFixedLecture({
-          subject: fixedSubject,
-          faculty: fixedFaculty,
-          room: fixedRoom,
+          subject: Number(fixedSubject),
+          faculty: Number(fixedFaculty),
+          room: Number(fixedRoom),
           day: fixedDay,
           timeSlot: fixedSlot,
         })

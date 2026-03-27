@@ -21,18 +21,27 @@ export const generateTimetableWithConstraints = (
     });
   });
 
+  // Track which faculty/classroom slots are used (for conflict avoidance)
+  const usedFacultySlots = new Set();
+  const usedClassroomSlots = new Set();
+
   // Place fixed lectures first
   fixedLectures.forEach((fixed) => {
     if (
       timetable[fixed.day] &&
       timetable[fixed.day][fixed.timeSlot] !== undefined
     ) {
+      const subj = subjects.find((s) => s.id === fixed.subject);
+      const fac = faculty.find((f) => f.id === fixed.faculty);
+      const room = classrooms.find((c) => c.id === fixed.room);
       timetable[fixed.day][fixed.timeSlot] = {
-        subject: fixed.subject,
-        faculty: fixed.faculty,
-        room: fixed.room,
+        subject: subj?.name || 'Unknown',
+        faculty: fac?.name || 'Unknown',
+        room: room?.name || 'Unknown',
         isFixed: true,
       };
+      if (fac) usedFacultySlots.add(`${fac.id}-${fixed.day}-${fixed.timeSlot}`);
+      if (room) usedClassroomSlots.add(`${room.id}-${fixed.day}-${fixed.timeSlot}`);
     }
   });
 
@@ -75,11 +84,13 @@ export const generateTimetableWithConstraints = (
 
             const isFacultyAssignedToThisSubject = f.assignedSubject === subject.id;
             const slotCountForFaculty = usedSlotsForFaculty[f.id] || 0;
+            const isFacultyAlreadyScheduled = usedFacultySlots.has(`${f.id}-${day}-${slot}`);
 
             return (
               isFacultyAvailable &&
               isFacultyAssignedToThisSubject &&
-              slotCountForFaculty < 5
+              slotCountForFaculty < 5 &&
+              !isFacultyAlreadyScheduled
             );
           });
 
@@ -93,8 +104,9 @@ export const generateTimetableWithConstraints = (
               (r) =>
                 r.classroom === c.id && r.day === day && r.timeSlot === slot
             );
+            const isClassroomAlreadyUsed = usedClassroomSlots.has(`${c.id}-${day}-${slot}`);
 
-            return !isClassroomReserved;
+            return !isClassroomReserved && !isClassroomAlreadyUsed;
           });
 
           if (!availableClassroom) {
@@ -112,6 +124,8 @@ export const generateTimetableWithConstraints = (
           usedSlotsForSubject[subject.id]++;
           usedSlotsForFaculty[availableFaculty.id] =
             (usedSlotsForFaculty[availableFaculty.id] || 0) + 1;
+          usedFacultySlots.add(`${availableFaculty.id}-${day}-${slot}`);
+          usedClassroomSlots.add(`${availableClassroom.id}-${day}-${slot}`);
           placed = true;
         }
       }

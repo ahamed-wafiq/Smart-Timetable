@@ -36,7 +36,7 @@ const InputManagement = () => {
         addSubject({
           id: Date.now(),
           name: subjectName,
-          lecturesPerWeek,
+          lecturesPerWeek: Number(lecturesPerWeek),
         })
       );
       setSubjectName('');
@@ -50,7 +50,7 @@ const InputManagement = () => {
         addFaculty({
           id: Date.now(),
           name: facultyName,
-          assignedSubject,
+          assignedSubject: Number(assignedSubject),
         })
       );
       setFacultyName('');

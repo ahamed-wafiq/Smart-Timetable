@@ -51,7 +51,6 @@ const HomePage = () => {
       <section className="hero-section">
         <div className="hero-content">
           <h1 className="hero-title">Smart Timetable Generation Made Simple</h1>
-          st
           <p className="hero-subtitle">
             Create conflict-free timetables in minutes. Our AI-powered platform
             optimizes schedules with intelligent constraint management and
