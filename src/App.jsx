@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { loadSEComputerCTemplate } from './utils/seeder';
 
 // Components
 import Navbar from './components/Navbar';
@@ -20,8 +21,17 @@ import './styles/app.css';
 
 function AppContent() {
   const { sidebarOpen } = useSelector((state) => state.ui);
+  const { timetables } = useSelector((state) => state.timetables);
+  const dispatch = useDispatch();
   const location = useLocation();
   const isHomePage = location.pathname === '/';
+
+  // Automatically populate the app with S.E. Computer C native data if template isn't loaded
+  useEffect(() => {
+    if (!timetables || !timetables.some(t => t.id.startsWith('TT-TEMPLATE-SE-'))) {
+      loadSEComputerCTemplate(dispatch);
+    }
+  }, [timetables, dispatch]);
 
   return (
     <div className="app dark-mode">

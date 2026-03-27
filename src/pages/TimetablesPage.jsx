@@ -1,24 +1,14 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { setTimetables } from '../store/timetableSlice';
-import { mockTimetablesData } from '../utils/mockData';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import DepartmentSelector from '../components/DepartmentSelector';
 import TimetableCard from '../components/TimetableCard';
 import '../styles/timetables-page.css';
 
 const TimetablesPage = () => {
-  const dispatch = useDispatch();
   const { selectedDepartment, selectedSemester, timetables } = useSelector(
     (state) => state.timetables
   );
 
-  useEffect(() => {
-    if (timetables.length === 0) {
-      dispatch(setTimetables(mockTimetablesData));
-    }
-  }, [dispatch, timetables.length]);
-
-  // Filter timetables based on department and semester
   const filteredTimetables = timetables.filter(
     (t) => t.department === selectedDepartment && t.semester === selectedSemester
   );
@@ -34,7 +24,12 @@ const TimetablesPage = () => {
 
       {filteredTimetables.length === 0 ? (
         <div className="empty-state card">
-          <p>No timetables available for the selected criteria.</p>
+          <div className="empty-icon">🗓️</div>
+          <h3>No Timetables Available</h3>
+          <p>
+            No timetables exist for the selected department and semester.
+            Head to the <strong>Generator</strong> page to create one.
+          </p>
         </div>
       ) : (
         <div className="timetables-list">
@@ -42,10 +37,7 @@ const TimetablesPage = () => {
             Available Options ({filteredTimetables.length})
           </h3>
           {filteredTimetables.map((timetable) => (
-            <TimetableCard
-              key={timetable.id}
-              timetable={timetable}
-            />
+            <TimetableCard key={timetable.id} timetable={timetable} />
           ))}
         </div>
       )}

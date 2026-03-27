@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { FiInfo, FiCheck } from 'react-icons/fi';
 import '../styles/settings-page.css';
 
 const SettingsPage = () => {
   const [notificationMessage, setNotificationMessage] = useState('');
+  const dispatch = useDispatch();
 
   const handleExportData = () => {
-    const data = localStorage.getItem('timetableData');
+    const data = localStorage.getItem('persist:root');
     if (data) {
       const element = document.createElement('a');
       element.setAttribute('href', 'data:text/json;charset=utf-8,' + encodeURIComponent(data));
@@ -22,7 +24,7 @@ const SettingsPage = () => {
 
   const handleClearData = () => {
     if (window.confirm('Are you sure you want to clear all saved data? This cannot be undone.')) {
-      localStorage.removeItem('timetableData');
+      localStorage.removeItem('persist:root');
       setNotificationMessage('Data cleared successfully!');
       setTimeout(() => setNotificationMessage(''), 3000);
       window.location.reload();
@@ -101,23 +103,6 @@ const SettingsPage = () => {
         </div>
       </div>
 
-      <div className="shortcuts-section card">
-        <h3>Keyboard Shortcuts</h3>
-        <div className="shortcuts-grid">
-          <div className="shortcut-item">
-            <kbd>Ctrl/Cmd</kbd> + <kbd>K</kbd>
-            <span>Search</span>
-          </div>
-          <div className="shortcut-item">
-            <kbd>Alt</kbd> + <kbd>D</kbd>
-            <span>Toggle Dark Mode</span>
-          </div>
-          <div className="shortcut-item">
-            <kbd>Alt</kbd> + <kbd>M</kbd>
-            <span>Toggle Menu</span>
-          </div>
-        </div>
-      </div>
     </div>
   );
 };

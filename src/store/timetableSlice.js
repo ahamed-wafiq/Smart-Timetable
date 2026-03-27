@@ -19,10 +19,13 @@ const timetableSlice = createSlice({
     setTimetables: (state, action) => {
       state.timetables = action.payload;
     },
+    addTimetable: (state, action) => {
+      state.timetables.push(action.payload);
+    },
   },
 });
 
-export const { setSelectedDepartment, setSelectedSemester, setTimetables } =
+export const { setSelectedDepartment, setSelectedSemester, setTimetables, addTimetable } =
   timetableSlice.actions;
 
 export default timetableSlice.reducer;

@@ -9,18 +9,17 @@ export const DEPARTMENTS = {
 
 export const SEMESTERS = [1, 2, 3, 4, 5, 6, 7, 8];
 
-export const DAYS_OF_WEEK = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
+export const DAYS_OF_WEEK = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
 export const TIME_SLOTS = [
-  '08:00 - 09:00',
-  '09:00 - 10:00',
-  '10:00 - 11:00',
+  '08:45 - 09:45',
+  '09:45 - 10:45',
   '11:00 - 12:00',
   '12:00 - 13:00',
-  '13:00 - 14:00',
-  '14:00 - 15:00',
-  '15:00 - 16:00',
-  '16:00 - 17:00',
+  '13:30 - 14:30',
+  '14:30 - 15:30',
+  '15:30 - 16:30',
+  '16:30 - 17:30',
 ];
 
 
@@ -32,15 +31,14 @@ export const CLASSROOMS = [
 ];
 
 export const TIME_SLOT_NUMBERS = {
-  0: '08:00 - 09:00',
-  1: '09:00 - 10:00',
-  2: '10:00 - 11:00',
-  3: '11:00 - 12:00',
-  4: '12:00 - 13:00',
-  5: '13:00 - 14:00',
-  6: '14:00 - 15:00',
-  7: '15:00 - 16:00',
-  8: '16:00 - 17:00',
+  0: '08:45 - 09:45',
+  1: '09:45 - 10:45',
+  2: '11:00 - 12:00',
+  3: '12:00 - 13:00',
+  4: '13:30 - 14:30',
+  5: '14:30 - 15:30',
+  6: '15:30 - 16:30',
+  7: '16:30 - 17:30',
 };
 
 export const SUBJECT_DIFFICULTY = {
@@ -67,17 +65,4 @@ export const STRESS_THRESHOLDS = {
   MEDIUM: { max: 60, label: 'Medium', color: '#f59e0b' },
   HIGH: { max: 85, label: 'High', color: '#ef4444' },
   CRITICAL: { label: 'Critical', color: '#7c3aed' }
-};
-
-// Colors for UI
-export const DEPARTMENT_COLORS = {
-  CSE: '#6366f1',
-  IT: '#8b5cf6',
-  EXTC: '#ec4899',
-};
-
-export const SUBJECT_DIFFICULTY_COLORS = {
-  easy: '#10b981',
-  medium: '#f59e0b',
-  hard: '#ef4444',
 };

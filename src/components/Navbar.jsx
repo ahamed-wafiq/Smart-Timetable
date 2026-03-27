@@ -1,15 +1,8 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import {
-  toggleSidebar, 
-  setCurrentPage 
-} from '../store/uiSlice';
-import { 
-  FiMenu, 
-  FiBook, 
-  FiLogOut
-} from 'react-icons/fi';
+import { toggleSidebar } from '../store/uiSlice';
+import { FiMenu, FiBook, FiLogOut } from 'react-icons/fi';
 import '../styles/navbar.css';
 
 const Navbar = () => {

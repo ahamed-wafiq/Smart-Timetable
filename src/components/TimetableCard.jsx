@@ -118,7 +118,7 @@ ${Object.entries(entriesByDay).map(([day, entries]) =>
                   <div className="grid-time-slot">{time}</div>
                   {DAYS_OF_WEEK.map((day) => {
                     const entry = entriesByDay[day]?.find(
-                      (e) => parseInt(e.timeSlot) === idx
+                      (e) => e.timeSlot === time || parseInt(e.timeSlot) === idx
                     );
                     return (
                       <div key={`${day}-${idx}`} className="grid-cell">

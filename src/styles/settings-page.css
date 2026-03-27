@@ -75,31 +75,6 @@
   font-size: 0.85rem;
   color: var(--dark-text-secondary);
 }
-
-.toggle-btn {
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  color: var(--text-secondary);
-  transition: var(--transition);
-  display: flex;
-  align-items: center;
-}
-
-.toggle-btn:hover {
-  color: var(--primary-color);
-  transform: scale(1.1);
-}
-
-.toggle-on {
-  color: var(--success-color);
-}
-
-.toggle-off {
-  color: var(--text-light);
-}
-
 .btn-danger {
   background-color: var(--error-color);
   color: var(--text-white);
@@ -148,93 +123,8 @@
   font-size: 0.95rem;
 }
 
-.tech-stack {
-  grid-column: span 1;
-}
-
-.tech-items {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.5rem;
-}
-
-.tech-item {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  padding: 1rem;
-  background-color: var(--bg-secondary);
-  border-radius: var(--radius-md);
-  border: 1px solid var(--border-color);
-}
-
-.tech-label {
-  font-size: 0.8rem;
-  color: var(--text-secondary);
-  text-transform: uppercase;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-}
-
-.tech-value {
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--primary-color);
-}
-
-.shortcuts-section {
-  padding: 2rem;
-}
-
-.shortcuts-section h3 {
-  margin: 0 0 1.5rem 0;
-  font-size: 1.25rem;
-  color: var(--text-primary);
-}
-
-.shortcuts-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1.5rem;
-}
-
-.shortcut-item {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  padding: 1rem;
-  background-color: var(--bg-secondary);
-  border-radius: var(--radius-md);
-  border: 1px solid var(--border-color);
-}
-
-.shortcut-item kbd {
-  display: inline-block;
-  padding: 0.25rem 0.5rem;
-  background-color: var(--bg-primary);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-sm);
-  font-family: monospace;
-  font-weight: 600;
-  font-size: 0.85rem;
-  color: var(--text-primary);
-}
-
-.shortcut-item span {
-  font-size: 0.95rem;
-  color: var(--text-secondary);
-}
-
 @media (max-width: 768px) {
   .settings-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .tech-items {
-    grid-template-columns: 1fr;
-  }
-
-  .shortcuts-grid {
     grid-template-columns: 1fr;
   }
 
