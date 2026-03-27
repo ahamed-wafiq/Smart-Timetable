@@ -4,6 +4,7 @@ export const DEPARTMENTS = {
   CSE: 'Computer Science & Engineering',
   IT: 'Information Technology',
   EXTC: 'Electronics & Telecommunication'
+  , MECH: 'Mechanical'
 };
 
 export const SEMESTERS = [1, 2, 3, 4, 5, 6, 7, 8];
@@ -21,6 +22,7 @@ export const TIME_SLOTS = [
   '15:00 - 16:00',
   '16:00 - 17:00',
 ];
+
 
 export const CLASSROOMS = [
   'A-101', 'A-102', 'A-103', 'A-104',

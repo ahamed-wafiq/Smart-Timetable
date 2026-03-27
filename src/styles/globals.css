@@ -110,6 +110,12 @@ input, select, textarea {
   transition: var(--transition);
 }
 
+/* Ensure dropdown options are always readable */
+select option {
+  background-color: var(--dark-bg-secondary, #1a1f3a);
+  color: var(--dark-text-primary, #f1f5f9);
+}
+
 input:focus, select:focus, textarea:focus {
   outline: none;
   border-color: var(--primary-color);

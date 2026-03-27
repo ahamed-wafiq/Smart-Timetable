@@ -36,6 +36,8 @@ function AppContent() {
             <Route path="/analysis" element={<AnalysisPage />} />
             <Route path="/generator" element={<GeneratorPage />} />
             <Route path="/settings" element={<SettingsPage />} />
+            {/* Catch-all: redirect unknown paths to dashboard */}
+            <Route path="*" element={<Dashboard />} />
           </Routes>
         </main>
       </div>

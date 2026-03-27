@@ -52,6 +52,12 @@
   box-shadow: 0 0 0 3px rgba(163, 230, 53, 0.2);
 }
 
+.input-management .input-field option {
+  background-color: #1a1f3a;
+  color: #f1f5f9;
+  padding: 0.5rem;
+}
+
 .input-management .selected-dept {
   font-size: 0.9rem;
   color: var(--dark-text-secondary);
