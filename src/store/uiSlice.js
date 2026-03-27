@@ -1,12 +1,12 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   sidebarOpen: false,
-  currentPage: 'dashboard',
+  currentPage: "dashboard",
 };
 
 const uiSlice = createSlice({
-  name: 'ui',
+  name: "ui",
   initialState,
   reducers: {
     toggleSidebar: (state) => {
@@ -21,6 +21,7 @@ const uiSlice = createSlice({
   },
 });
 
-export const { toggleSidebar, setSidebarOpen, setCurrentPage } = uiSlice.actions;
+export const { toggleSidebar, setSidebarOpen, setCurrentPage } =
+  uiSlice.actions;
 
 export default uiSlice.reducer;

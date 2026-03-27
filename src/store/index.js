@@ -1,8 +1,8 @@
-import { configureStore } from '@reduxjs/toolkit';
-import inputReducer from './inputSlice';
-import constraintReducer from './constraintSlice';
-import timetableReducer from './timetableSlice';
-import uiReducer from './uiSlice';
+import { configureStore } from "@reduxjs/toolkit";
+import inputReducer from "./inputSlice";
+import constraintReducer from "./constraintSlice";
+import timetableReducer from "./timetableSlice";
+import uiReducer from "./uiSlice";
 
 const store = configureStore({
   reducer: {

@@ -3,6 +3,7 @@
   --primary-color: #a3e635;
   --secondary-color: #84cc16;
   --accent-color: #65a30d;
+  --primary-dark: #65a30d;
   --success-color: #a3e635;
   --warning-color: #f59e0b;
   --error-color: #ef4444;
@@ -30,6 +31,8 @@
   --radius-md: 0.5rem;
   --radius-lg: 0.75rem;
   --radius-xl: 1rem;
+  --border-radius: var(--radius-md);
+  --border-radius-lg: var(--radius-lg);
   
   --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   
