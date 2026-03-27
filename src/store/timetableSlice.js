@@ -1,13 +1,13 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  selectedDepartment: 'CSE',
+  selectedDepartment: "CSE",
   selectedSemester: 3,
   timetables: [],
 };
 
 const timetableSlice = createSlice({
-  name: 'timetables',
+  name: "timetables",
   initialState,
   reducers: {
     setSelectedDepartment: (state, action) => {
@@ -22,6 +22,7 @@ const timetableSlice = createSlice({
   },
 });
 
-export const { setSelectedDepartment, setSelectedSemester, setTimetables } = timetableSlice.actions;
+export const { setSelectedDepartment, setSelectedSemester, setTimetables } =
+  timetableSlice.actions;
 
 export default timetableSlice.reducer;
