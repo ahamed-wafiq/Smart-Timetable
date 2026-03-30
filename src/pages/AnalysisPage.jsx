@@ -10,7 +10,7 @@ const AnalysisPage = () => {
   const { selectedDepartment, selectedSemester, timetables } = useSelector(
     (state) => state.timetables
   );
-  const [selectedOption, setSelectedOption] = useState(1);
+  const [selectedTimetableId, setSelectedTimetableId] = useState(null);
   const [chartType, setChartType] = useState('bar');
 
   const relevantTimetables = timetables.filter(
@@ -20,14 +20,20 @@ const AnalysisPage = () => {
   // Reset selected option whenever the filtered set changes
   useEffect(() => {
     if (relevantTimetables.length > 0) {
-      setSelectedOption(relevantTimetables[0].optionNumber);
+      // Find currently selected ID, or default to first if invalid
+      const stillExists = relevantTimetables.find((t) => t.id === selectedTimetableId);
+      if (!stillExists) {
+        setSelectedTimetableId(relevantTimetables[0].id);
+      }
+    } else {
+      setSelectedTimetableId(null);
     }
-  }, [selectedDepartment, selectedSemester]);
+  }, [selectedDepartment, selectedSemester, relevantTimetables]);
 
   const hasTimetables = relevantTimetables.length > 0;
 
   const selectedTimetable = hasTimetables
-    ? (relevantTimetables.find((t) => t.optionNumber === selectedOption) ??
+    ? (relevantTimetables.find((t) => t.id === selectedTimetableId) ??
         relevantTimetables[0])
     : null;
 
@@ -55,7 +61,7 @@ const AnalysisPage = () => {
       '',
       `Department   : ${selectedDepartment}`,
       `Semester     : ${selectedSemester}`,
-      `Option       : ${selectedTimetable.optionNumber}`,
+      `Option       : ${relevantTimetables.findIndex(t => t.id === selectedTimetable.id) + 1}`,
       `Generated At : ${new Date().toLocaleString()}`,
       '',
       '──────────────────────────────────────────────────────────',
@@ -105,7 +111,7 @@ const AnalysisPage = () => {
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `stress-report-${selectedDepartment}-sem${selectedSemester}-opt${selectedTimetable.optionNumber}.txt`;
+    a.download = `stress-report-${selectedDepartment}-sem${selectedSemester}-opt${relevantTimetables.findIndex(t => t.id === selectedTimetable.id) + 1}.txt`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
@@ -147,13 +153,13 @@ const AnalysisPage = () => {
               </button>
             </div>
             <div className="button-group">
-              {relevantTimetables.map((opt) => (
+              {relevantTimetables.map((opt, idx) => (
                 <button
                   key={opt.id}
-                  className={`option-btn ${selectedOption === opt.optionNumber ? 'active' : ''}`}
-                  onClick={() => setSelectedOption(opt.optionNumber)}
+                  className={`option-btn ${selectedTimetableId === opt.id ? 'active' : ''}`}
+                  onClick={() => setSelectedTimetableId(opt.id)}
                 >
-                  Option {opt.optionNumber}
+                  Option {idx + 1}
                   <span className="score-badge">
                     {opt.optimizationScore.toFixed(1)}%
                   </span>

@@ -131,7 +131,7 @@ const generateStressWarnings = (dayMetrics, dayStressScores) => {
     const stressScore = dayStressScores[day];
 
     // Check for overload
-    if (metrics.consecutiveLectures > 6) {
+    if (metrics.consecutiveLectures > 8) {
       warnings.push({
         type: 'overload',
         severity: 'high',
@@ -265,5 +265,5 @@ export const calculateOptimizationScore = (timetableEntries) => {
     }
   });
 
-  return Math.max(75, Math.min(99, score));
+  return Math.max(75, Math.min(100, score));
 };

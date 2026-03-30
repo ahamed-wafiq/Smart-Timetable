@@ -89,9 +89,9 @@ const Dashboard = () => {
           <div className="options-section">
             <h3>Timetable Options Comparison</h3>
             <div className="options-list card">
-              {relevantTimetables.map((t) => (
+              {relevantTimetables.map((t, idx) => (
                 <div key={t.id} className="option-item">
-                  <span className="option-label">Option {t.optionNumber}</span>
+                  <span className="option-label">Option {idx + 1}</span>
                   <div className="score-bar">
                     <div
                       className="score-fill"

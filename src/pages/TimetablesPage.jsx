@@ -36,8 +36,8 @@ const TimetablesPage = () => {
           <h3 className="section-title">
             Available Options ({filteredTimetables.length})
           </h3>
-          {filteredTimetables.map((timetable) => (
-            <TimetableCard key={timetable.id} timetable={timetable} />
+          {filteredTimetables.map((timetable, index) => (
+            <TimetableCard key={timetable.id} timetable={timetable} displayNumber={index + 1} />
           ))}
         </div>
       )}

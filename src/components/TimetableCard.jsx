@@ -8,7 +8,7 @@ import { TIME_SLOT_NUMBERS, DAYS_OF_WEEK } from '../utils/constants';
 import { calculateWeeklyStressMetrics, getStressLevel } from '../utils/stressAnalysis';
 import '../styles/timetableCard.css';
 
-const TimetableCard = ({ timetable, filters = {} }) => {
+const TimetableCard = ({ timetable, filters = {}, displayNumber = null }) => {
   const [expanded, setExpanded] = useState(false);
   
   if (!timetable || !timetable.entries || timetable.entries.length === 0) {
@@ -56,7 +56,7 @@ const TimetableCard = ({ timetable, filters = {} }) => {
       '',
       `Department        : ${timetable.department}`,
       `Semester          : ${timetable.semester}`,
-      `Option            : ${timetable.optionNumber}`,
+      `Option            : ${displayNumber ?? timetable.optionNumber}`,
       `Optimization Score: ${timetable.optimizationScore?.toFixed(1)}%`,
       `Generated At      : ${new Date(timetable.createdAt).toLocaleString()}`,
       '',
@@ -88,7 +88,7 @@ const TimetableCard = ({ timetable, filters = {} }) => {
     const url = URL.createObjectURL(blob);
     const element = document.createElement('a');
     element.href = url;
-    element.setAttribute('download', `timetable-${timetable.department}-sem${timetable.semester}-opt${timetable.optionNumber}.txt`);
+    element.setAttribute('download', `timetable-${timetable.department}-sem${timetable.semester}-opt${displayNumber ?? timetable.optionNumber}.txt`);
     document.body.appendChild(element);
     element.click();
     document.body.removeChild(element);
@@ -99,7 +99,7 @@ const TimetableCard = ({ timetable, filters = {} }) => {
     <div className="timetable-card card">
       <div className="timetable-header">
         <div className="timetable-title">
-          <h3>Option {timetable.optionNumber}</h3>
+          <h3>Option {displayNumber ?? timetable.optionNumber}</h3>
           <div className="optimization-score">
             <span className="score-label">Optimization Score</span>
             <span className="score-value">
