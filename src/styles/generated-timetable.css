@@ -112,7 +112,7 @@
 
 .generated-timetable .grid-header {
   display: grid;
-  grid-template-columns: 120px repeat(5, 1fr);
+  grid-template-columns: 120px repeat(6, 1fr);
   gap: 1px;
   margin-bottom: 1px;
   background: var(--border-color);
@@ -131,7 +131,7 @@
 
 .generated-timetable .grid-row {
   display: grid;
-  grid-template-columns: 120px repeat(5, 1fr);
+  grid-template-columns: 120px repeat(6, 1fr);
   gap: 1px;
   margin-bottom: 1px;
   background: var(--border-color);
@@ -201,7 +201,7 @@
 @media (max-width: 1024px) {
   .generated-timetable .grid-header,
   .generated-timetable .grid-row {
-    grid-template-columns: 100px repeat(5, 0.9fr);
+    grid-template-columns: 100px repeat(6, 0.9fr);
   }
 
   .generated-timetable .time-header,
@@ -245,7 +245,7 @@
 
   .generated-timetable .grid-header,
   .generated-timetable .grid-row {
-    grid-template-columns: 80px repeat(5, 0.75fr);
+    grid-template-columns: 80px repeat(6, 0.75fr);
   }
 
   .generated-timetable .grid-cell {

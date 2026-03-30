@@ -1,4 +1,15 @@
-import { SUBJECT_DIFFICULTY, STRESS_THRESHOLDS } from './constants';
+import { SUBJECT_DIFFICULTY, STRESS_THRESHOLDS, TIME_SLOTS } from './constants';
+
+/**
+ * Convert a timeSlot (string like '08:45 - 09:45' or integer) to a numeric index.
+ * This ensures gap calculations work regardless of data source.
+ */
+const toSlotIndex = (timeSlot) => {
+  if (typeof timeSlot === 'number') return timeSlot;
+  const idx = TIME_SLOTS.indexOf(timeSlot);
+  // fallback: try parseInt (for old integer-string entries like "0", "1" ...)
+  return idx >= 0 ? idx : (parseInt(timeSlot) || 0);
+};
 
 /**
  * Calculate stress score for a single day's timetable
@@ -9,33 +20,36 @@ export const calculateDayStressScore = (dayEntries) => {
     return 0;
   }
 
+  // Sort entries by their slot index so gap math is correct
+  const sorted = [...dayEntries].sort(
+    (a, b) => toSlotIndex(a.timeSlot) - toSlotIndex(b.timeSlot)
+  );
+
   let stressScore = 0;
 
-  // 1. Consecutive lectures penalty (harder subjects back-to-back)
-  const consecutiveCount = dayEntries.length;
+  // 1. Lecture count penalty – more lectures = more stress
+  const consecutiveCount = sorted.length;
   stressScore += Math.min(consecutiveCount * 8, 25); // Max 25 points
 
-  // 2. Gaps between lectures penalty (but short gaps are bad, long gaps are good)
+  // 2. Gaps between lectures penalty
   const gaps = [];
-  for (let i = 0; i < dayEntries.length - 1; i++) {
-    const currentEnd = parseInt(dayEntries[i].timeSlot) + 1;
-    const nextStart = parseInt(dayEntries[i + 1].timeSlot);
-    const gapSize = nextStart - currentEnd;
-    gaps.push(gapSize);
+  for (let i = 0; i < sorted.length - 1; i++) {
+    const currentEnd = toSlotIndex(sorted[i].timeSlot) + 1;
+    const nextStart = toSlotIndex(sorted[i + 1].timeSlot);
+    gaps.push(nextStart - currentEnd);
   }
 
-  // Ideal gap is 1-2 slots. Too many gaps or no gaps is bad
   let gapPenalty = 0;
   gaps.forEach((gap) => {
-    if (gap > 2) gapPenalty += 3; // Too large gap
-    else if (gap < 1) gapPenalty += 5; // No gap - continuous
+    if (gap > 2) gapPenalty += 3;   // too large a gap (wasted time)
+    else if (gap < 1) gapPenalty += 5; // back-to-back with no break
   });
   stressScore += Math.min(gapPenalty, 20); // Max 20 points
 
-  // 3. Heavy subject clustering (multiple hard subjects in a row)
+  // 3. Hard subject clustering penalty
   let hardSubjectCluster = 0;
   let currentHardCount = 0;
-  dayEntries.forEach((entry) => {
+  sorted.forEach((entry) => {
     const difficulty = SUBJECT_DIFFICULTY[entry.subject] || 'medium';
     if (difficulty === 'hard') {
       currentHardCount++;
@@ -55,7 +69,13 @@ export const calculateDayStressScore = (dayEntries) => {
  * Calculate overall stress metrics for a week's timetable
  */
 export const calculateWeeklyStressMetrics = (timetableEntries) => {
-  const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
+  // Include Saturday if entries exist for it
+  const allDays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  const daysWithEntries = allDays.filter((d) =>
+    timetableEntries.some((e) => e.day === d)
+  );
+  const days = daysWithEntries.length > 0 ? daysWithEntries : allDays.slice(0, 5);
+
   const dayMetrics = {};
   const dayStressScores = {};
 
@@ -63,13 +83,16 @@ export const calculateWeeklyStressMetrics = (timetableEntries) => {
     const dayEntries = timetableEntries.filter((e) => e.day === day);
     const stressScore = calculateDayStressScore(dayEntries);
 
-    const consecutiveCount = dayEntries.length;
+    // Sort for correct gap computation
+    const sorted = [...dayEntries].sort(
+      (a, b) => toSlotIndex(a.timeSlot) - toSlotIndex(b.timeSlot)
+    );
+
     const gaps = [];
-    for (let i = 0; i < dayEntries.length - 1; i++) {
-      const currentEnd = parseInt(dayEntries[i].timeSlot) + 1;
-      const nextStart = parseInt(dayEntries[i + 1].timeSlot);
-      const gapSize = nextStart - currentEnd;
-      gaps.push(gapSize);
+    for (let i = 0; i < sorted.length - 1; i++) {
+      const currentEnd = toSlotIndex(sorted[i].timeSlot) + 1;
+      const nextStart = toSlotIndex(sorted[i + 1].timeSlot);
+      gaps.push(nextStart - currentEnd);
     }
 
     const hardSubjects = dayEntries.filter(
@@ -77,24 +100,24 @@ export const calculateWeeklyStressMetrics = (timetableEntries) => {
     ).length;
 
     dayMetrics[day] = {
-      consecutiveLectures: consecutiveCount,
-      gapsBetweenLectures: gaps.length,
-      hardSubjects: hardSubjects,
+      consecutiveLectures: dayEntries.length,
+      gapsBetweenLectures: gaps.filter((g) => g > 0).length,
+      hardSubjects,
       totalLectures: dayEntries.length,
     };
 
     dayStressScores[day] = stressScore;
   });
 
-  // Generate warnings
   const warnings = generateStressWarnings(dayMetrics, dayStressScores);
+  const scores = Object.values(dayStressScores);
+  const avg = scores.reduce((a, b) => a + b, 0) / (scores.length || 1);
 
   return {
     dayMetrics,
     dayStressScores,
     warnings,
-    averageStress:
-      Object.values(dayStressScores).reduce((a, b) => a + b, 0) / 5,
+    averageStress: avg,
   };
 };
 

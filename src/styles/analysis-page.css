@@ -7,10 +7,38 @@
 }
 
 .option-selector h3 {
-  margin: 0 0 1rem 0;
+  margin: 0 0 0;
   font-size: 1.125rem;
   color: var(--dark-text-primary);
 }
+
+.option-selector-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.btn-report {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: rgba(163, 230, 53, 0.12);
+  border: 1px solid rgba(163, 230, 53, 0.4);
+  border-radius: var(--radius-md);
+  color: var(--primary-color);
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.btn-report:hover {
+  background: var(--primary-color);
+  color: var(--dark-bg-primary);
+}
+
 
 .button-group {
   display: flex;
@@ -135,12 +163,70 @@
 
 .stress-chart {
   padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  min-height: 420px;   /* ensures Recharts always gets a real size */
 }
 
 .stress-chart h3 {
   margin: 0 0 1rem 0;
   font-size: 1.125rem;
   color: var(--text-primary);
+}
+
+.chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.chart-header h3 {
+  margin: 0;
+}
+
+.chart-type-toggle {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.chart-toggle-btn {
+  padding: 0.3rem 0.75rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(163, 230, 53, 0.35);
+  background: transparent;
+  color: var(--dark-text-secondary);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.chart-toggle-btn.active,
+.chart-toggle-btn:hover {
+  background: var(--primary-color);
+  color: var(--dark-bg-primary);
+  border-color: var(--primary-color);
+}
+
+.chart-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 0.75rem;
+  font-size: 0.78rem;
+  color: var(--dark-text-secondary);
+  font-weight: 500;
+  align-items: center;
+}
+
+.legend-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 4px;
+  vertical-align: middle;
 }
 
 .detailed-analysis {
@@ -179,11 +265,62 @@
 }
 
 .stress-badge {
-  font-size: 1.25rem;
+  font-size: 1rem;
   font-weight: 700;
-  padding: 0.5rem 1rem;
+  padding: 0.4rem 0.85rem;
   border-radius: 9999px;
 }
+
+/* Stress progress bar inside day card */
+.stress-progress-bar {
+  height: 6px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 3px;
+  margin-bottom: 1.25rem;
+  overflow: hidden;
+}
+
+.stress-progress-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.6s ease;
+}
+
+/* Stress distribution mini bar chart in summary card */
+.stress-distribution {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.5rem;
+  height: 64px;
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
+.dist-bar-wrap {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  height: 100%;
+  justify-content: flex-end;
+}
+
+.dist-bar {
+  width: 100%;
+  border-radius: 4px 4px 0 0;
+  min-height: 8px;
+  transition: height 0.4s ease;
+  opacity: 0.85;
+}
+
+.dist-day {
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: var(--dark-text-secondary);
+  text-transform: uppercase;
+}
+
 
 .stress-badge.low {
   background-color: rgba(16, 185, 129, 0.1);
